@@ -68,7 +68,15 @@ int main(int argc, char* argv[])
 					char* colon = strstr(line, ":");
 					if (colon != NULL)
 					{
-						printf("%s", line);
+						fputs("Variable ID --", foutp);
+						char temp[MAXLEN];
+						for (int i = 0; line[i] != ':'; i++)
+						{
+							temp[i] = line[i];
+							temp[i + 1] = '\0';
+						}
+						fputs(temp, foutp);
+						fputs("--\n", foutp);
 					}
 					if (text != NULL)
 					{
@@ -98,7 +106,7 @@ int main(int argc, char* argv[])
 					
 					if (colon != NULL)
 					{
-						fputs("Flow Control ID –", foutp);
+						fputs("Flow Control ID --", foutp);
 						char temp[MAXLEN];
 						for (int i = 0; line[i] != ':'; i++)
 						{
@@ -106,7 +114,7 @@ int main(int argc, char* argv[])
 							temp[i + 1] = '\0';
 						}
 						fputs(temp, foutp);
-						fputs("–\n", foutp);
+						fputs("--\n", foutp);
 					}
 					if (beq != NULL)
 					{
