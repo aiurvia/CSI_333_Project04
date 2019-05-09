@@ -19,8 +19,11 @@
 
 int main(int argc, char* argv[])
 {
-	char line[MAXLEN];		/* To hold each line of the input file. */
-	FILE* finp, * foutp;	/* Pointers for input and output files. */
+	char line[MAXLEN];
+	FILE* finp, * foutp;
+	int arg_v = strcmp(argv[FLAG_ARG], "-v");
+	int arg_f = strcmp(argv[FLAG_ARG], "-f");
+	int arg_b = strcmp(argv[FLAG_ARG], "-b");
 
 	if (argc != NUMARG)
 	{
@@ -29,9 +32,9 @@ int main(int argc, char* argv[])
 		exit(1);
 	}
 
-	if (argv[FLAG_ARG] != "-f" || "-v" || "-b")
+	if (arg_v * arg_f * arg_b != 0)
 	{
-		printf("Usage: CSI_333_Project04 flag infile outfile \n");
+		printf("Usage: -v -f -b");
 		fflush(stdout);
 		exit(1);
 	}
@@ -52,7 +55,21 @@ int main(int argc, char* argv[])
 
 	while (fgets(line, MAXLEN, finp) != NULL)
 	{
-		printf("");
+		
+	}
+	
+	if (fclose(finp) == EOF) {
+		printf("Error in closing input file.\n");
+		fflush(stdout);
 	}
 
+	if (fclose(foutp) == EOF) {
+		printf("Error in closing output file.\n");
+		fflush(stdout);
+	}
+
+	printf("Finished.\n");
+	fflush(stdout);
+
+	return 0;
 }
