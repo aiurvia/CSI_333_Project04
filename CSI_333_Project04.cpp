@@ -10,7 +10,7 @@
 #include <string.h>
 
 /* Maximum line length. */
-#define MAXLEN 81
+#define MAXLEN 80
 /* Symbolic constants associated with command line parameters.*/
 #define NUMARG 4
 #define FLAG_ARG 1
@@ -55,7 +55,20 @@ int main(int argc, char* argv[])
 
 	while (fgets(line, MAXLEN, finp) != NULL)
 	{
-		
+		if (arg_v == 0)
+		{
+			printf("V");
+		}
+
+		if (arg_f == 0)
+		{
+			printf("F");
+		}
+
+		if (arg_b == 0)
+		{
+			printf("B");
+		}
 	}
 	
 	if (fclose(finp) == EOF) {
