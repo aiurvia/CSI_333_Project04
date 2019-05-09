@@ -21,6 +21,7 @@
 int main(int argc, char* argv[])
 {
 	char line[MAXLEN];
+	char save[MAXLEN];
 	FILE* finp, * foutp;
 	int arg_v = strcmp(argv[FLAG_ARG], "-v");
 	int arg_f = strcmp(argv[FLAG_ARG], "-f");
@@ -59,6 +60,7 @@ int main(int argc, char* argv[])
 		if (arg_v == 0)
 		{
 			char* data = strstr(line, ".data");
+			int count = 0;
 
 			if (data != NULL)
 			{
@@ -66,24 +68,41 @@ int main(int argc, char* argv[])
 				{
 					char* text = strstr(line, ".text");
 					char* colon = strstr(line, ":");
+					
 					if (colon != NULL)
 					{
-						fputs("Variable ID --", foutp);
-						char temp[MAXLEN];
 						for (int i = 0; line[i] != ':'; i++)
 						{
-							temp[i] = line[i];
-							temp[i + 1] = '\0';
+							save[count] = line[i];
+							count++;
 						}
-						fputs(temp, foutp);
-						fputs("--\n", foutp);
+						save[count] = '\n';
+						count++;
 					}
 					if (text != NULL)
 					{
-						break;
+						/*char temp[5];
+						for (int i = 0; save[i] != '\n'; i++)
+						{
+							temp[i] = save[i];
+							printf("%c", temp[i]);
+							save[i] = '\n';
+						}*/
+
+						/*while (fgets(line, MAXLEN, finp) != NULL)
+						{
+							char* findV = strstr(line, save);
+							
+							if (findV != NULL)
+							{
+								printf("%s", line);
+							}
+						}*/
 					}
 				}
 			}
+			//printf("%d", count);
+			save[10] = '\0';
 		}
 
 		if (arg_f == 0)
@@ -154,7 +173,9 @@ int main(int argc, char* argv[])
 
 		if (arg_b == 0)
 		{
-			
+			//Too late,and I'm gonna sleep and do this tomorrow (AKA today:) FUCK!).
+			//arg_f is perfect.
+			// Version 2.3.0 at GMT+8 2019/05/10 02:35.
 		}
 	}
 	
