@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CSI_333_Project04.cpp">
+    <ClCompile Include="CSI_333_Project04.c">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
