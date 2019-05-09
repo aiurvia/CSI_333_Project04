@@ -246,7 +246,7 @@ void last(int num_lines, char* fp)
 {
 	FILE* finp;
 	char* c;
-	char* ptrs[num_lines];
+	char* ptrs [100];
 	int num, count = 0;
 
 	if (num_lines <= 0)
@@ -283,7 +283,7 @@ void trunc(int num_chars, char* fp)
 	FILE* finp;
 	char* p;
 	int string_len;
-	char copy[num_chars];
+	char copy[100];
 	int i;
 
 	if (num_chars < 2)
