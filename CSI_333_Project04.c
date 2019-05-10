@@ -8,6 +8,7 @@
 	2017215156
 	Zhang Wenhan
 */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -104,6 +105,7 @@ int main(int argc, char* argv[])
 								if (findV != NULL)
 								{
 									fputs(line, foutp);
+									fputs("\n", foutp);
 								}
 							}
 							
@@ -230,6 +232,7 @@ int main(int argc, char* argv[])
 								if (findV != NULL)
 								{
 									fputs(line, foutp);
+									fputs("\n", foutp);
 								}
 							}
 
