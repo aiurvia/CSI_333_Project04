@@ -219,7 +219,7 @@ int main(int argc, char* argv[])
 						while (temp != NULL)
 						{
 							int point2 = ftell(finp);
-							fputs("Flow Control ID --", foutp);
+							fputs("Variable ID --", foutp);
 							fputs(temp, foutp);
 							fputs("--\n", foutp);
 
