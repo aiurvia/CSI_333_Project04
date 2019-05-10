@@ -4,6 +4,9 @@
 	ZR1703
 	2017215158
 	Gao Chang
+	& co-partner
+	2017215156
+	Zhang Wenhan
 */
 #include <stdio.h>
 #include <stdlib.h>
@@ -76,6 +79,7 @@ int main(int argc, char* argv[])
 							save[count] = line[i];
 							count++;
 						}
+						
 						save[count] = '\n';
 						count++;
 					}
@@ -89,7 +93,7 @@ int main(int argc, char* argv[])
 						while (temp!= NULL)
 						{
 							int point = ftell(finp);
-							fputs("Flow Control ID --", foutp);
+							fputs("Variable ID --", foutp);
 							fputs(temp, foutp);
 							fputs("--\n", foutp);
 							
@@ -135,43 +139,45 @@ int main(int argc, char* argv[])
 					{
 						fputs("Flow Control ID --", foutp);
 						char temp[MAXLEN];
+						
 						for (int i = 0; line[i] != ':'; i++)
 						{
 							temp[i] = line[i];
 							temp[i + 1] = '\0';
 						}
+						
 						fputs(temp, foutp);
 						fputs("--\n", foutp);
 					}
-					if (beq != NULL)
+					else if (beq != NULL)
 					{
 						fputs(line, foutp);
 					}
-					if (blt != NULL)
+					else if (blt != NULL)
 					{
 						fputs(line, foutp);
 					}
-					if (ble != NULL)
+					else if (ble != NULL)
 					{
 						fputs(line, foutp);
 					}
-					if (bgt != NULL)
+					else if (bgt != NULL)
 					{
 						fputs(line, foutp);
 					}
-					if (bge != NULL)
+					else if (bge != NULL)
 					{
 						fputs(line, foutp);
 					}
-					if (bne != NULL)
+					else if (bne != NULL)
 					{
 						fputs(line, foutp);
 					}
-					if (jr != NULL)
+					else if (jr != NULL)
 					{
 						fputs(line, foutp);
 					}
-					if (jal != NULL)
+					else if (jal != NULL)
 					{
 						fputs(line, foutp);
 					}
@@ -199,6 +205,7 @@ int main(int argc, char* argv[])
 							save[count] = line[i];
 							count++;
 						}
+						
 						save[count] = '\n';
 						count++;
 					}
@@ -233,8 +240,6 @@ int main(int argc, char* argv[])
 				}
 			}
 			
-			
-			
 			fseek(finp, point1, SEEK_SET);
 			char* text = strstr(line, ".text");
 
@@ -256,43 +261,45 @@ int main(int argc, char* argv[])
 					{
 						fputs("Flow Control ID --", foutp);
 						char temp[MAXLEN];
+						
 						for (int i = 0; line[i] != ':'; i++)
 						{
 							temp[i] = line[i];
 							temp[i + 1] = '\0';
 						}
+						
 						fputs(temp, foutp);
 						fputs("--\n", foutp);
 					}
-					if (beq != NULL)
+					else if (beq != NULL)
 					{
 						fputs(line, foutp);
 					}
-					if (blt != NULL)
+					else if (blt != NULL)
 					{
 						fputs(line, foutp);
 					}
-					if (ble != NULL)
+					else if (ble != NULL)
 					{
 						fputs(line, foutp);
 					}
-					if (bgt != NULL)
+					else if (bgt != NULL)
 					{
 						fputs(line, foutp);
 					}
-					if (bge != NULL)
+					else if (bge != NULL)
 					{
 						fputs(line, foutp);
 					}
-					if (bne != NULL)
+					else if (bne != NULL)
 					{
 						fputs(line, foutp);
 					}
-					if (jr != NULL)
+					else if (jr != NULL)
 					{
 						fputs(line, foutp);
 					}
-					if (jal != NULL)
+					else if (jal != NULL)
 					{
 						fputs(line, foutp);
 					}
@@ -311,7 +318,6 @@ int main(int argc, char* argv[])
 		fflush(stdout);
 	}
 
-	//printf("%s", save);
 	printf("Finished.\n");
 	fflush(stdout);
 
