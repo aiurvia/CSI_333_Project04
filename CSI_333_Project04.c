@@ -7,6 +7,9 @@
 	& co-partner
 	2017215156
 	Zhang Wenhan
+
+	The algorithm of statement -v and statement -b are witten by Gao Chang.
+	The algorithm of statement -f is written by Zhang Wenhan.
 */
 
 #include <stdio.h>
