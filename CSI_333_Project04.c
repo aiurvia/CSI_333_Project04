@@ -125,17 +125,11 @@ int main(int argc, char* argv[])
 
 			if (text != NULL)
 			{
+				int point1 = ftell(finp);
+
 				while (fgets(line, MAXLEN, finp) != NULL)
 				{
 					char* colon = strstr(line, ":");
-					char* beq = strstr(line, "beq");
-					char* blt = strstr(line, "blt");
-					char* ble = strstr(line, "ble");
-					char* bgt = strstr(line, "bgt");
-					char* bge = strstr(line, "bge");
-					char* bne = strstr(line, "bne");
-					char* jr = strstr(line, "jr");
-					char* jal = strstr(line, "jal");
 					
 					if (colon != NULL)
 					{
@@ -151,7 +145,22 @@ int main(int argc, char* argv[])
 						fputs(temp, foutp);
 						fputs("--\n", foutp);
 					}
-					else if (beq != NULL)
+				}
+
+				fseek(finp, point1, SEEK_SET);
+				
+				while (fgets(line, MAXLEN, finp) != NULL)
+				{
+					char* beq = strstr(line, "beq");
+					char* blt = strstr(line, "blt");
+					char* ble = strstr(line, "ble");
+					char* bgt = strstr(line, "bgt");
+					char* bge = strstr(line, "bge");
+					char* bne = strstr(line, "bne");
+					char* jr = strstr(line, "jr");
+					char* jal = strstr(line, "jal");
+
+					if (beq != NULL)
 					{
 						fputs(line, foutp);
 					}
@@ -248,9 +257,32 @@ int main(int argc, char* argv[])
 
 			if (text != NULL)
 			{
+				int point2 = ftell(finp);
+
 				while (fgets(line, MAXLEN, finp) != NULL)
 				{
 					char* colon = strstr(line, ":");
+
+					if (colon != NULL)
+					{
+						fputs("Flow Control ID --", foutp);
+						char temp[MAXLEN];
+
+						for (int i = 0; line[i] != ':'; i++)
+						{
+							temp[i] = line[i];
+							temp[i + 1] = '\0';
+						}
+
+						fputs(temp, foutp);
+						fputs("--\n", foutp);
+					}
+				}
+
+				fseek(finp, point2, SEEK_SET);
+
+				while (fgets(line, MAXLEN, finp) != NULL)
+				{
 					char* beq = strstr(line, "beq");
 					char* blt = strstr(line, "blt");
 					char* ble = strstr(line, "ble");
@@ -260,21 +292,7 @@ int main(int argc, char* argv[])
 					char* jr = strstr(line, "jr");
 					char* jal = strstr(line, "jal");
 
-					if (colon != NULL)
-					{
-						fputs("Flow Control ID --", foutp);
-						char temp[MAXLEN];
-						
-						for (int i = 0; line[i] != ':'; i++)
-						{
-							temp[i] = line[i];
-							temp[i + 1] = '\0';
-						}
-						
-						fputs(temp, foutp);
-						fputs("--\n", foutp);
-					}
-					else if (beq != NULL)
+					if (beq != NULL)
 					{
 						fputs(line, foutp);
 					}
