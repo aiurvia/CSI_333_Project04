@@ -79,30 +79,38 @@ int main(int argc, char* argv[])
 						save[count] = '\n';
 						count++;
 					}
+					
 					if (text != NULL)
 					{
-						/*char temp[5];
-						for (int i = 0; save[i] != '\n'; i++)
-						{
-							temp[i] = save[i];
-							printf("%c", temp[i]);
-							save[i] = '\n';
-						}*/
+						char* temp;
+						save[count] = '\0';
+						temp = strtok(save, "\n");
 
-						/*while (fgets(line, MAXLEN, finp) != NULL)
+						while (temp!= NULL)
 						{
-							char* findV = strstr(line, save);
+							int point = ftell(finp);
+							fputs("Flow Control ID --", foutp);
+							fputs(temp, foutp);
+							fputs("--\n", foutp);
 							
-							if (findV != NULL)
+							while (fgets(line, MAXLEN, finp) != NULL)
 							{
-								printf("%s", line);
+								char* findV = strstr(line, temp);
+
+								if (findV != NULL)
+								{
+									fputs(line, foutp);
+								}
 							}
-						}*/
+							
+							temp = strtok(NULL, "\n");
+							fseek(finp, point, SEEK_SET);
+						}
 					}
 				}
 			}
-			//printf("%d", count);
-			save[10] = '\0';
+			
+			
 		}
 
 		if (arg_f == 0)
@@ -173,9 +181,123 @@ int main(int argc, char* argv[])
 
 		if (arg_b == 0)
 		{
-			//Too late,and I'm gonna sleep and do this tomorrow (AKA today:) FUCK!).
-			//arg_f is perfect.
-			// Version 2.3.0 at GMT+8 2019/05/10 02:35.
+			int point1 = ftell(finp);
+			char* data = strstr(line, ".data");
+			int count = 0;
+
+			if (data != NULL)
+			{
+				while (fgets(line, MAXLEN, finp) != NULL)
+				{
+					char* text = strstr(line, ".text");
+					char* colon = strstr(line, ":");
+
+					if (colon != NULL)
+					{
+						for (int i = 0; line[i] != ':'; i++)
+						{
+							save[count] = line[i];
+							count++;
+						}
+						save[count] = '\n';
+						count++;
+					}
+
+					if (text != NULL)
+					{
+						char* temp;
+						save[count] = '\0';
+						temp = strtok(save, "\n");
+
+						while (temp != NULL)
+						{
+							int point2 = ftell(finp);
+							fputs("Flow Control ID --", foutp);
+							fputs(temp, foutp);
+							fputs("--\n", foutp);
+
+							while (fgets(line, MAXLEN, finp) != NULL)
+							{
+								char* findV = strstr(line, temp);
+
+								if (findV != NULL)
+								{
+									fputs(line, foutp);
+								}
+							}
+
+							temp = strtok(NULL, "\n");
+							fseek(finp, point2, SEEK_SET);
+						}
+					}
+				}
+			}
+			
+			
+			
+			fseek(finp, point1, SEEK_SET);
+			char* text = strstr(line, ".text");
+
+			if (text != NULL)
+			{
+				while (fgets(line, MAXLEN, finp) != NULL)
+				{
+					char* colon = strstr(line, ":");
+					char* beq = strstr(line, "beq");
+					char* blt = strstr(line, "blt");
+					char* ble = strstr(line, "ble");
+					char* bgt = strstr(line, "bgt");
+					char* bge = strstr(line, "bge");
+					char* bne = strstr(line, "bne");
+					char* jr = strstr(line, "jr");
+					char* jal = strstr(line, "jal");
+
+					if (colon != NULL)
+					{
+						fputs("Flow Control ID --", foutp);
+						char temp[MAXLEN];
+						for (int i = 0; line[i] != ':'; i++)
+						{
+							temp[i] = line[i];
+							temp[i + 1] = '\0';
+						}
+						fputs(temp, foutp);
+						fputs("--\n", foutp);
+					}
+					if (beq != NULL)
+					{
+						fputs(line, foutp);
+					}
+					if (blt != NULL)
+					{
+						fputs(line, foutp);
+					}
+					if (ble != NULL)
+					{
+						fputs(line, foutp);
+					}
+					if (bgt != NULL)
+					{
+						fputs(line, foutp);
+					}
+					if (bge != NULL)
+					{
+						fputs(line, foutp);
+					}
+					if (bne != NULL)
+					{
+						fputs(line, foutp);
+					}
+					if (jr != NULL)
+					{
+						fputs(line, foutp);
+					}
+					if (jal != NULL)
+					{
+						fputs(line, foutp);
+					}
+				}
+			}
 		}
 	}
 	
@@ -189,6 +311,7 @@ int main(int argc, char* argv[])
 		fflush(stdout);
 	}
 
+	//printf("%s", save);
 	printf("Finished.\n");
 	fflush(stdout);
 
